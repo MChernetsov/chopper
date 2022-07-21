@@ -298,8 +298,8 @@ class ChopperClient {
     ConvertRequest? requestConverter,
     ConvertResponse? responseConverter,
   }) async {
-    var req = await _handleRequestConverter(request, requestConverter);
     req = await _interceptRequest(req);
+    var req = await _handleRequestConverter(request, requestConverter);
     _requestController.add(req);
 
     final streamRes = await httpClient.send(await req.toBaseRequest());
